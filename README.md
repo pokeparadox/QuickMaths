@@ -1,0 +1,2 @@
+# QuickMaths
+Random sum generator
