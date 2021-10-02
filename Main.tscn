@@ -4,30 +4,31 @@
 [ext_resource path="res://sounds/wrong.wav" type="AudioStream" id=2]
 [ext_resource path="res://sounds/correct.wav" type="AudioStream" id=3]
 
-[node name="Main" type="Control"]
+[node name="Main" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSplitContainer" type="VSplitContainer" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -240.0
-margin_right = 240.0
-margin_bottom = 800.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 470.0
+margin_bottom = 790.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer"]
-margin_right = 480.0
-margin_bottom = 86.0
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 470.0
+margin_bottom = 120.0
 
-[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer"]
-margin_right = 480.0
+[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_right = 470.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Quick Maths!"
@@ -35,26 +36,31 @@ __meta__ = {
 "_editor_description_": "Quick MAths!"
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 480.0
-margin_bottom = 38.0
+margin_right = 470.0
+margin_bottom = 22.0
 
-[node name="FirstNum" type="TextEdit" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 470.0
+margin_bottom = 46.0
+
+[node name="FirstNum" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 70.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 70, 20 )
 text = "000000"
 readonly = true
 
-[node name="Operation" type="Label" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="Operation" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 74.0
 margin_top = 3.0
 margin_right = 82.0
 margin_bottom = 17.0
 text = "+"
 
-[node name="SecondNum" type="TextEdit" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="SecondNum" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 86.0
 margin_right = 156.0
 margin_bottom = 20.0
@@ -62,45 +68,213 @@ rect_min_size = Vector2( 70, 0 )
 text = "00000"
 readonly = true
 
-[node name="Equals" type="Label" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="Equals" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 160.0
 margin_top = 3.0
 margin_right = 168.0
 margin_bottom = 17.0
 text = "="
 
-[node name="Response" type="TextEdit" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="Response" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 172.0
 margin_right = 312.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 140, 0 )
-text = "00000"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonCheck" type="Button" parent="VSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonCheck" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 316.0
 margin_right = 366.0
 margin_bottom = 20.0
 text = "Check"
 
-[node name="ButtonShow" type="Button" parent="VSplitContainer/VBoxContainer"]
-margin_top = 42.0
-margin_right = 480.0
-margin_bottom = 62.0
+[node name="StatusBox" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 470.0
+margin_bottom = 64.0
+
+[node name="LabelLevel" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_right = 26.0
+margin_bottom = 14.0
+text = "Lvl: "
+
+[node name="LabelLevelValue" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 30.0
+margin_right = 38.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="LabelAttempted" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 42.0
+margin_right = 112.0
+margin_bottom = 14.0
+text = "Questions:"
+
+[node name="LabelAttemptedVal" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 116.0
+margin_right = 124.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="LabelCorrect" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 128.0
+margin_right = 178.0
+margin_bottom = 14.0
+text = "Correct:"
+
+[node name="LabelCorrectVal" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 182.0
+margin_right = 190.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="LabelPercentage" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 194.0
+margin_right = 269.0
+margin_bottom = 14.0
+text = "Percentage:"
+
+[node name="LabelPercentageVal" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 273.0
+margin_right = 281.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="LabelPercent" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 285.0
+margin_right = 297.0
+margin_bottom = 14.0
+text = "%"
+
+[node name="LabelBest" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 301.0
+margin_right = 334.0
+margin_bottom = 14.0
+text = "Best:"
+
+[node name="BestVal" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
+margin_left = 338.0
+margin_right = 338.0
+margin_bottom = 14.0
+
+[node name="ButtonShow" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 470.0
+margin_bottom = 88.0
 text = "Show Answer"
 
-[node name="ButtonNext" type="Button" parent="VSplitContainer/VBoxContainer"]
-margin_top = 66.0
-margin_right = 480.0
-margin_bottom = 86.0
+[node name="ButtonNext" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_top = 92.0
+margin_right = 470.0
+margin_bottom = 112.0
 text = "Next"
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VSplitContainer"]
-margin_top = 98.0
-margin_right = 480.0
-margin_bottom = 800.0
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
+margin_top = 116.0
+margin_right = 470.0
+margin_bottom = 120.0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 470.0
+margin_bottom = 128.0
+
+[node name="ButtonGrid" type="GridContainer" parent="VBoxContainer"]
+margin_top = 132.0
+margin_right = 470.0
+margin_bottom = 248.0
+columns = 3
+
+[node name="Button7" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_right = 154.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "7"
+
+[node name="Button8" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 158.0
+margin_right = 312.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "8"
+
+[node name="Button9" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 316.0
+margin_right = 470.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "9"
+
+[node name="Button4" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_top = 24.0
+margin_right = 154.0
+margin_bottom = 44.0
+text = "4"
+
+[node name="Button5" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 158.0
+margin_top = 24.0
+margin_right = 312.0
+margin_bottom = 44.0
+text = "5"
+
+[node name="Button6" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 316.0
+margin_top = 24.0
+margin_right = 470.0
+margin_bottom = 44.0
+text = "6"
+
+[node name="Button1" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_top = 48.0
+margin_right = 154.0
+margin_bottom = 68.0
+text = "1"
+
+[node name="Button2" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 158.0
+margin_top = 48.0
+margin_right = 312.0
+margin_bottom = 68.0
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 316.0
+margin_top = 48.0
+margin_right = 470.0
+margin_bottom = 68.0
+text = "3"
+
+[node name="Button0" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_top = 72.0
+margin_right = 154.0
+margin_bottom = 92.0
+text = "0"
+
+[node name="ButtonClear" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 158.0
+margin_top = 72.0
+margin_right = 312.0
+margin_bottom = 92.0
+text = "Del"
+
+[node name="ButtonClearAll" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_left = 316.0
+margin_top = 72.0
+margin_right = 470.0
+margin_bottom = 92.0
+text = "Clear"
+
+[node name="Button-" type="Button" parent="VBoxContainer/ButtonGrid"]
+margin_top = 96.0
+margin_right = 154.0
+margin_bottom = 116.0
+text = "-"
 
 [node name="CorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -108,6 +282,21 @@ stream = ExtResource( 3 )
 [node name="WrongSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
-[connection signal="pressed" from="VSplitContainer/VBoxContainer/HBoxContainer/ButtonCheck" to="." method="_on_ButtonCheck_pressed"]
-[connection signal="pressed" from="VSplitContainer/VBoxContainer/ButtonShow" to="." method="_on_ButtonShow_pressed"]
-[connection signal="pressed" from="VSplitContainer/VBoxContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/ButtonCheck" to="." method="_on_ButtonCheck_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonShow" to="." method="_on_ButtonShow_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button7" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button8" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button9" to="." method="_on_Button9_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button5" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button6" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button1" to="." method="_on_Button1_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button0" to="." method="_on_Button0_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/ButtonClear" to="." method="_on_ButtonClear_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/ButtonClearAll" to="." method="_on_ButtonClearAll_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button-" to="." method="_on_Button_pressed"]
+[connection signal="finished" from="CorrectSound" to="." method="_on_CorrectSound_finished"]
+[connection signal="finished" from="WrongSound" to="." method="_on_WrongSound_finished"]
