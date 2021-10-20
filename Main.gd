@@ -11,6 +11,9 @@ var level : int = 0
 var questions : int = 0
 var correct : int = 0
 var progress : int = 0
+var defaultFontColour : Color = Color(1,1,1,1)
+
+
 
 enum Operations {Add, Sub, Mul, Div}
 
@@ -22,16 +25,19 @@ func _ready() -> void:
 	answer = valA + valB
 	$VBoxContainer/VBoxContainer/HBoxContainer/FirstNum.text = str(valA)
 	$VBoxContainer/VBoxContainer/HBoxContainer/SecondNum.text = str(valB)
+	defaultFontColour = $VBoxContainer/VBoxContainer/HBoxContainer/Response.get_color("font_color")
 
 
 func _on_ButtonCheck_pressed() -> void:
 	var response : int = int($VBoxContainer/VBoxContainer/HBoxContainer/Response.text)
 	if (response == answer):
+		$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(0,1,0,1))
 		$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Correct! ^_~"
 		$CorrectSound.play()
 		progress = progress + 1
 		correct = correct + 1
 	else:
+		$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(1,0,0,1))
 		$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Sorry -_-"
 		$WrongSound.play()
 		progress = progress - 1
@@ -119,6 +125,7 @@ func _on_ButtonClear_pressed() -> void:
 
 func _on_ButtonClearAll_pressed() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = ""
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", defaultFontColour)
 
 
 func _on_CorrectSound_finished() -> void:
