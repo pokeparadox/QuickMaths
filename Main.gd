@@ -13,8 +13,6 @@ var correct : int = 0
 var progress : int = 0
 var defaultFontColour : Color = Color(1,1,1,1)
 
-
-
 enum Operations {Add, Sub, Mul, Div}
 
 # Called when the node enters the scene tree for the first time.
@@ -48,13 +46,11 @@ func _on_ButtonCheck_pressed() -> void:
 	$VBoxContainer/VBoxContainer/StatusBox/LabelLevelValue.text = str(level)
 	$VBoxContainer/VBoxContainer/StatusBox/LabelAttemptedVal.text = str(questions)
 	$VBoxContainer/VBoxContainer/StatusBox/LabelCorrectVal.text = str(correct)
-	$VBoxContainer/VBoxContainer/StatusBox/LabelPercentageVal.text = str((float(correct) / float(questions)) * 100)
-	$VBoxContainer/VBoxContainer/StatusBox/BestVal.text = "0"
+	$VBoxContainer/VBoxContainer/StatusBox/LabelPercentageVal.text = str(stepify((float(correct) / float(questions) * 100), 0.001))
 
 func _on_ButtonShow_pressed() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = str(answer)
 	progress = progress - 1
-
 
 func _on_ButtonNext_pressed() -> void:
 	valA = int(rand_range(0, MaxVal))
@@ -72,70 +68,30 @@ func _on_ButtonNext_pressed() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/SecondNum.text = str(valB)
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = ""
 
-
-
-func _on_Button7_pressed() -> void:
-	addChar("7")
-
-
-func _on_Button8_pressed() -> void:
-	addChar("8")
-
-
-func _on_Button9_pressed() -> void:
-	addChar("9")
-
-
-func _on_Button4_pressed() -> void:
-	addChar("4")
-
-
-func _on_Button5_pressed() -> void:
-	addChar("5")
-
-
-func _on_Button6_pressed() -> void:
-	addChar("6")
-
-
-func _on_Button1_pressed() -> void:
-	addChar("1")
-
-
-func _on_Button2_pressed() -> void:
-	addChar("2")
-
-
-func _on_Button3_pressed() -> void:
-	addChar("3")
-
-
-func _on_Button0_pressed() -> void:
-	addChar("0")
-
 func addChar(character) -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = $VBoxContainer/VBoxContainer/HBoxContainer/Response.text + character
 
-func _on_ButtonClear_pressed() -> void:
+func _on_CorrectSound_finished() -> void:
+	_on_ButtonGrid_ClearAllButtonPressed()
+	_on_ButtonNext_pressed()
+
+
+func _on_WrongSound_finished() -> void:
+	_on_ButtonGrid_ClearAllButtonPressed()
+
+func _on_ButtonGrid_ButtonPressed(value) -> void:
+	addChar(str(value))
+
+
+func _on_ButtonGrid_ClearAllButtonPressed() -> void:
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = ""
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", defaultFontColour)
+
+func _on_ButtonGrid_ClearButtonPressed() -> void:
 	var text = $VBoxContainer/VBoxContainer/HBoxContainer/Response.text
 	if(not text.empty()):
 		text.erase(text.length() - 1, 1)
 		$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = text
 
-
-func _on_ButtonClearAll_pressed() -> void:
-	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = ""
-	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", defaultFontColour)
-
-
-func _on_CorrectSound_finished() -> void:
-	_on_ButtonClearAll_pressed()
-	_on_ButtonNext_pressed()
-
-
-func _on_WrongSound_finished() -> void:
-	_on_ButtonClearAll_pressed()
-
-
-func _on_Button_pressed() -> void:
+func _on_ButtonGrid_MinusButtonPressed() -> void:
 	addChar("-")

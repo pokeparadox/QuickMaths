@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://sounds/wrong.wav" type="AudioStream" id=2]
 [ext_resource path="res://sounds/correct.wav" type="AudioStream" id=3]
 [ext_resource path="res://font/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://DefaultFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Controls/ButtonGrid.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://font/OpenSans-ExtraBold.ttf"
@@ -123,19 +124,6 @@ margin_bottom = 23.0
 custom_fonts/font = SubResource( 3 )
 text = "%"
 
-[node name="LabelBest" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
-margin_left = 345.0
-margin_right = 382.0
-margin_bottom = 23.0
-custom_fonts/font = SubResource( 3 )
-text = "Best:"
-
-[node name="BestVal" type="Label" parent="VBoxContainer/VBoxContainer/StatusBox"]
-margin_left = 386.0
-margin_right = 386.0
-margin_bottom = 23.0
-custom_fonts/font = SubResource( 3 )
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 73.0
 margin_right = 470.0
@@ -215,113 +203,12 @@ margin_top = 191.0
 margin_right = 470.0
 margin_bottom = 195.0
 
-[node name="ButtonGrid" type="GridContainer" parent="VBoxContainer"]
+[node name="ButtonGrid" parent="VBoxContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 199.0
 margin_right = 470.0
 margin_bottom = 375.0
-columns = 3
-
-[node name="Button7" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_right = 154.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "7"
-
-[node name="Button8" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 158.0
-margin_right = 312.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "8"
-
-[node name="Button9" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 316.0
-margin_right = 470.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 5 )
-text = "9"
-
-[node name="Button4" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_top = 36.0
-margin_right = 154.0
-margin_bottom = 68.0
-custom_fonts/font = ExtResource( 5 )
-text = "4"
-
-[node name="Button5" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 158.0
-margin_top = 36.0
-margin_right = 312.0
-margin_bottom = 68.0
-custom_fonts/font = ExtResource( 5 )
-text = "5"
-
-[node name="Button6" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 316.0
-margin_top = 36.0
-margin_right = 470.0
-margin_bottom = 68.0
-custom_fonts/font = ExtResource( 5 )
-text = "6"
-
-[node name="Button1" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_top = 72.0
-margin_right = 154.0
-margin_bottom = 104.0
-custom_fonts/font = ExtResource( 5 )
-text = "1"
-
-[node name="Button2" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 158.0
-margin_top = 72.0
-margin_right = 312.0
-margin_bottom = 104.0
-custom_fonts/font = ExtResource( 5 )
-text = "2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button3" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 316.0
-margin_top = 72.0
-margin_right = 470.0
-margin_bottom = 104.0
-custom_fonts/font = ExtResource( 5 )
-text = "3"
-
-[node name="Button0" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_top = 108.0
-margin_right = 154.0
-margin_bottom = 140.0
-custom_fonts/font = ExtResource( 5 )
-text = "0"
-
-[node name="ButtonClear" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 158.0
-margin_top = 108.0
-margin_right = 312.0
-margin_bottom = 140.0
-custom_fonts/font = ExtResource( 5 )
-text = "Del"
-
-[node name="ButtonClearAll" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_left = 316.0
-margin_top = 108.0
-margin_right = 470.0
-margin_bottom = 140.0
-custom_fonts/font = ExtResource( 5 )
-text = "Clear"
-
-[node name="Button-" type="Button" parent="VBoxContainer/ButtonGrid"]
-margin_top = 144.0
-margin_right = 154.0
-margin_bottom = 176.0
-custom_fonts/font = ExtResource( 5 )
-text = "-"
 
 [node name="CorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -332,18 +219,9 @@ stream = ExtResource( 2 )
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/ButtonCheck" to="." method="_on_ButtonCheck_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonShow" to="." method="_on_ButtonShow_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button7" to="." method="_on_Button7_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button8" to="." method="_on_Button8_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button9" to="." method="_on_Button9_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button4" to="." method="_on_Button4_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button5" to="." method="_on_Button5_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button6" to="." method="_on_Button6_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button1" to="." method="_on_Button1_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button2" to="." method="_on_Button2_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button3" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button0" to="." method="_on_Button0_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/ButtonClear" to="." method="_on_ButtonClear_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/ButtonClearAll" to="." method="_on_ButtonClearAll_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonGrid/Button-" to="." method="_on_Button_pressed"]
+[connection signal="ButtonPressed" from="VBoxContainer/ButtonGrid" to="." method="_on_ButtonGrid_ButtonPressed"]
+[connection signal="ClearAllButtonPressed" from="VBoxContainer/ButtonGrid" to="." method="_on_ButtonGrid_ClearAllButtonPressed"]
+[connection signal="ClearButtonPressed" from="VBoxContainer/ButtonGrid" to="." method="_on_ButtonGrid_ClearButtonPressed"]
+[connection signal="MinusButtonPressed" from="VBoxContainer/ButtonGrid" to="." method="_on_ButtonGrid_MinusButtonPressed"]
 [connection signal="finished" from="CorrectSound" to="." method="_on_CorrectSound_finished"]
 [connection signal="finished" from="WrongSound" to="." method="_on_WrongSound_finished"]

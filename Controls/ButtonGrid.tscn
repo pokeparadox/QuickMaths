@@ -1,0 +1,129 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DefaultFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Controls/ButtonGrid.gd" type="Script" id=2]
+
+[node name="ButtonGrid" type="GridContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button7" type="Button" parent="."]
+margin_right = 157.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "7"
+
+[node name="Button8" type="Button" parent="."]
+margin_left = 161.0
+margin_right = 318.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "8"
+
+[node name="Button9" type="Button" parent="."]
+margin_left = 322.0
+margin_right = 479.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "9"
+
+[node name="Button4" type="Button" parent="."]
+margin_top = 36.0
+margin_right = 157.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "4"
+
+[node name="Button5" type="Button" parent="."]
+margin_left = 161.0
+margin_top = 36.0
+margin_right = 318.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "5"
+
+[node name="Button6" type="Button" parent="."]
+margin_left = 322.0
+margin_top = 36.0
+margin_right = 479.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+
+[node name="Button1" type="Button" parent="."]
+margin_top = 72.0
+margin_right = 157.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 161.0
+margin_top = 72.0
+margin_right = 318.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 1 )
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 322.0
+margin_top = 72.0
+margin_right = 479.0
+margin_bottom = 104.0
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+
+[node name="Button0" type="Button" parent="."]
+margin_top = 108.0
+margin_right = 157.0
+margin_bottom = 140.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="ButtonClear" type="Button" parent="."]
+margin_left = 161.0
+margin_top = 108.0
+margin_right = 318.0
+margin_bottom = 140.0
+custom_fonts/font = ExtResource( 1 )
+text = "Del"
+
+[node name="ButtonClearAll" type="Button" parent="."]
+margin_left = 322.0
+margin_top = 108.0
+margin_right = 479.0
+margin_bottom = 140.0
+custom_fonts/font = ExtResource( 1 )
+text = "Clear"
+
+[node name="Button-" type="Button" parent="."]
+margin_top = 144.0
+margin_right = 157.0
+margin_bottom = 176.0
+custom_fonts/font = ExtResource( 1 )
+text = "-"
+
+[connection signal="pressed" from="Button7" to="." method="_on_Button7_pressed"]
+[connection signal="pressed" from="Button8" to="." method="_on_Button8_pressed"]
+[connection signal="pressed" from="Button9" to="." method="_on_Button9_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_Button6_pressed"]
+[connection signal="pressed" from="Button1" to="." method="_on_Button1_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Button0" to="." method="_on_Button0_pressed"]
+[connection signal="pressed" from="ButtonClear" to="." method="_on_ButtonClear_pressed"]
+[connection signal="pressed" from="ButtonClearAll" to="." method="_on_ButtonClearAll_pressed"]
+[connection signal="pressed" from="Button-" to="." method="_on_Button_pressed"]
