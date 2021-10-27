@@ -1,5 +1,6 @@
 extends Control
 
+const SaveFile := "res://save.sav"
 var MaxVal:int = 10
 const MultDivMax: int = 12
 const NextLevel : int = 10
@@ -24,6 +25,8 @@ func _ready() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/FirstNum.text = str(valA)
 	$VBoxContainer/VBoxContainer/HBoxContainer/SecondNum.text = str(valB)
 	defaultFontColour = $VBoxContainer/VBoxContainer/HBoxContainer/Response.get_color("font_color")
+	Load()
+	$VBoxContainer/VBoxContainer/StatusBox/LabelLevelValue.text = str(level)
 
 
 func _on_ButtonCheck_pressed() -> void:
@@ -95,3 +98,26 @@ func _on_ButtonGrid_ClearButtonPressed() -> void:
 
 func _on_ButtonGrid_MinusButtonPressed() -> void:
 	addChar("-")
+
+func _notification(msg):
+	if msg == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		Save()
+		get_tree().quit()
+func Save():
+	var file = File.new()
+	file.open(SaveFile, File.WRITE)
+	file.store_var(level)
+	file.close()
+
+func Load():
+	var file = File.new()
+	file.open(SaveFile, File.READ)
+	level = file.get_var()
+	file.close()
+
+
+func _on_ButtonReset_pressed() -> void:
+	level = 0
+	progress = 0
+	Save()
+	_ready()
