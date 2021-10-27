@@ -29,19 +29,25 @@ func _ready() -> void:
 	$VBoxContainer/VBoxContainer/StatusBox/LabelLevelValue.text = str(level)
 
 
+func LevelUp() -> void:
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(0,1,0,1))
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Correct! ^_~"
+	$CorrectSound.play()
+	progress = progress + 1
+	correct = correct + 1
+
+func LevelDown() -> void:
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(1,0,0,1))
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Sorry -_-"
+	$WrongSound.play()
+	progress = progress - 1
+
 func _on_ButtonCheck_pressed() -> void:
 	var response : int = int($VBoxContainer/VBoxContainer/HBoxContainer/Response.text)
 	if (response == answer):
-		$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(0,1,0,1))
-		$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Correct! ^_~"
-		$CorrectSound.play()
-		progress = progress + 1
-		correct = correct + 1
+		LevelUp()
 	else:
-		$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(1,0,0,1))
-		$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Sorry -_-"
-		$WrongSound.play()
-		progress = progress - 1
+		LevelDown()
 	questions = questions + 1
 	if(progress % NextLevel == 0):
 		level = level + 1
@@ -103,6 +109,7 @@ func _notification(msg):
 	if msg == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		Save()
 		get_tree().quit()
+
 func Save():
 	var file = File.new()
 	file.open(SaveFile, File.WRITE)
@@ -111,9 +118,10 @@ func Save():
 
 func Load():
 	var file = File.new()
-	file.open(SaveFile, File.READ)
-	level = file.get_var()
-	file.close()
+	if(file.file_exists(SaveFile)):
+		file.open(SaveFile, File.READ)
+		level = file.get_var()
+		file.close()
 
 
 func _on_ButtonReset_pressed() -> void:
