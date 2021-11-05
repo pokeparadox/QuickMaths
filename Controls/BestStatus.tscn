@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Controls/StatusFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Controls/BestStatus.gd" type="Script" id=2]
+
+[node name="BestStatus" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelTitle" type="Label" parent="."]
+margin_top = 388.0
+margin_right = 41.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "Best: "
+
+[node name="LabelLevel" type="Label" parent="."]
+margin_left = 45.0
+margin_top = 388.0
+margin_right = 73.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "Lvl: "
+
+[node name="LabelLevelValue" type="Label" parent="."]
+margin_left = 77.0
+margin_top = 388.0
+margin_right = 86.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="LabelAttempted" type="Label" parent="."]
+margin_left = 90.0
+margin_top = 388.0
+margin_right = 171.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "Questions:"
+
+[node name="LabelAttemptedVal" type="Label" parent="."]
+margin_left = 175.0
+margin_top = 388.0
+margin_right = 184.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="LabelCorrect" type="Label" parent="."]
+margin_left = 188.0
+margin_top = 388.0
+margin_right = 249.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "Correct:"
+
+[node name="LabelCorrectVal" type="Label" parent="."]
+margin_left = 253.0
+margin_top = 388.0
+margin_right = 262.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="LabelPercentage" type="Label" parent="."]
+margin_left = 266.0
+margin_top = 388.0
+margin_right = 356.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "Percentage:"
+
+[node name="LabelPercentageVal" type="Label" parent="."]
+margin_left = 360.0
+margin_top = 388.0
+margin_right = 369.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="LabelPercent" type="Label" parent="."]
+margin_left = 373.0
+margin_top = 388.0
+margin_right = 386.0
+margin_bottom = 411.0
+custom_fonts/font = ExtResource( 1 )
+text = "%"

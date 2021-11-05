@@ -1,22 +1,18 @@
 extends Control
 
-const SaveFile := "res://save.sav"
+
 var MaxVal:int = 10
 const MultDivMax: int = 12
 const NextLevel : int = 10
 var valA :int = 0
 var valB : int = 0
 var answer :int = 0
-
-var level : int = 0
-var questions : int = 0
-var correct : int = 0
-var progress : int = 0
+var scoreData : ScoreData = ScoreData.new()
+var bestScoreData : ScoreData = ScoreData.new()
 var defaultFontColour : Color = Color(1,1,1,1)
 
 enum Operations {Add, Sub, Mul, Div}
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
 	valA = int(rand_range(0, MaxVal))
@@ -26,40 +22,36 @@ func _ready() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/SecondNum.text = str(valB)
 	defaultFontColour = $VBoxContainer/VBoxContainer/HBoxContainer/Response.get_color("font_color")
 	Load()
-	$VBoxContainer/VBoxContainer/StatusBox/LabelLevelValue.text = str(level)
 
-
-func LevelUp() -> void:
+func Right() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(0,1,0,1))
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Correct! ^_~"
 	$CorrectSound.play()
-	progress = progress + 1
-	correct = correct + 1
+	scoreData.Right()
 
-func LevelDown() -> void:
+func Wrong() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(1,0,0,1))
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Sorry -_-"
 	$WrongSound.play()
-	progress = progress - 1
+	scoreData.Wrong()
+
+func SetScoreData() -> void:
+	$VBoxContainer/VBoxContainer/CurrentStatus.SetScoreData(scoreData)
+	$VBoxContainer/VBoxContainer/BestStatus.SetScoreData(scoreData)
+
 
 func _on_ButtonCheck_pressed() -> void:
 	var response : int = int($VBoxContainer/VBoxContainer/HBoxContainer/Response.text)
 	if (response == answer):
-		LevelUp()
+		Right()
 	else:
-		LevelDown()
-	questions = questions + 1
-	if(progress % NextLevel == 0):
-		level = level + 1
-		MaxVal = MaxVal + 10
-	$VBoxContainer/VBoxContainer/StatusBox/LabelLevelValue.text = str(level)
-	$VBoxContainer/VBoxContainer/StatusBox/LabelAttemptedVal.text = str(questions)
-	$VBoxContainer/VBoxContainer/StatusBox/LabelCorrectVal.text = str(correct)
-	$VBoxContainer/VBoxContainer/StatusBox/LabelPercentageVal.text = str(stepify((float(correct) / float(questions) * 100), 0.001))
+		Wrong()
+	MaxVal = (scoreData.Level * scoreData.LEVEL_MULT) + scoreData.Progress + scoreData.LEVEL_MULT
+	SetScoreData()
 
 func _on_ButtonShow_pressed() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = str(answer)
-	progress = progress - 1
+	scoreData.Skip()
 
 func _on_ButtonNext_pressed() -> void:
 	valA = int(rand_range(0, MaxVal))
@@ -111,21 +103,19 @@ func _notification(msg):
 		get_tree().quit()
 
 func Save():
-	var file = File.new()
-	file.open(SaveFile, File.WRITE)
-	file.store_var(level)
-	file.close()
+	bestScoreData.Save()
 
 func Load():
-	var file = File.new()
-	if(file.file_exists(SaveFile)):
-		file.open(SaveFile, File.READ)
-		level = file.get_var()
-		file.close()
+	if bestScoreData.Load():
+		$VBoxContainer/VBoxContainer/BestStatus.SetScoreData(bestScoreData)
 
 
 func _on_ButtonReset_pressed() -> void:
-	level = 0
-	progress = 0
+	scoreData = ScoreData.new()
 	Save()
 	_ready()
+
+
+func _on_BestStatus_newBestScore(data) -> void:
+	bestScoreData = data
+	Save()
