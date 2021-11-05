@@ -39,7 +39,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_right = 470.0
-margin_bottom = 208.0
+margin_bottom = 214.0
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
 margin_right = 470.0
@@ -86,15 +86,15 @@ readonly = true
 
 [node name="Operation" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 74.0
-margin_top = 5.0
-margin_right = 83.0
-margin_bottom = 28.0
+margin_top = 4.0
+margin_right = 84.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 5 )
 text = "+"
 
 [node name="SecondNum" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 87.0
-margin_right = 157.0
+margin_left = 88.0
+margin_right = 158.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 70, 0 )
 custom_fonts/font = ExtResource( 5 )
@@ -102,16 +102,16 @@ text = "00000"
 readonly = true
 
 [node name="Equals" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 161.0
-margin_top = 5.0
-margin_right = 170.0
-margin_bottom = 28.0
+margin_left = 162.0
+margin_top = 4.0
+margin_right = 172.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 5 )
 text = "="
 
 [node name="Response" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 174.0
-margin_right = 314.0
+margin_left = 176.0
+margin_right = 316.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 140, 0 )
 custom_fonts/font = ExtResource( 5 )
@@ -120,15 +120,15 @@ __meta__ = {
 }
 
 [node name="ButtonCheck" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 318.0
-margin_right = 375.0
+margin_left = 320.0
+margin_right = 382.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 text = "Check"
 
 [node name="ButtonReset" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 379.0
-margin_right = 433.0
+margin_left = 386.0
+margin_right = 444.0
 margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 text = "Reset"
@@ -136,33 +136,33 @@ text = "Reset"
 [node name="ButtonShow" type="Button" parent="VBoxContainer/VBoxContainer"]
 margin_top = 138.0
 margin_right = 470.0
-margin_bottom = 167.0
+margin_bottom = 170.0
 custom_fonts/font = ExtResource( 5 )
 text = "Show Answer"
 
 [node name="ButtonNext" type="Button" parent="VBoxContainer/VBoxContainer"]
-margin_top = 171.0
+margin_top = 174.0
 margin_right = 470.0
-margin_bottom = 200.0
+margin_bottom = 206.0
 custom_fonts/font = ExtResource( 5 )
 text = "Next"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
-margin_top = 204.0
+margin_top = 210.0
 margin_right = 470.0
-margin_bottom = 208.0
+margin_bottom = 214.0
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 212.0
+margin_top = 218.0
 margin_right = 470.0
-margin_bottom = 216.0
+margin_bottom = 222.0
 
 [node name="ButtonGrid" parent="VBoxContainer" instance=ExtResource( 6 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 220.0
+margin_top = 226.0
 margin_right = 470.0
-margin_bottom = 381.0
+margin_bottom = 402.0
 
 [node name="CorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

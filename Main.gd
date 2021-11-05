@@ -3,7 +3,6 @@ extends Control
 
 var MaxVal:int = 10
 const MultDivMax: int = 12
-const NextLevel : int = 10
 var valA :int = 0
 var valB : int = 0
 var answer :int = 0
@@ -111,7 +110,10 @@ func Load():
 
 
 func _on_ButtonReset_pressed() -> void:
-	scoreData = ScoreData.new()
+	scoreData.reset()
+	$VBoxContainer/VBoxContainer/HBoxContainer/Operation.text = "+"
+	MaxVal = scoreData.LEVEL_MULT
+	SetScoreData()
 	Save()
 	_ready()
 

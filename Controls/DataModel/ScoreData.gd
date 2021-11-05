@@ -18,7 +18,16 @@ func init(scoreData : ScoreData) -> void:
 	Questions = scoreData.Questions
 	Correct = scoreData.Correct
 
+func reset() -> void:
+	Level = 0
+	Progress = 0
+	LastProgressTrigger = 0
+	Questions = 0
+	Correct = 0
+
 func PercentageCorrect() -> float:
+	if Questions == 0:
+		return 0.0
 	return stepify(float(Correct / float(Questions)) * 100.0, 0.01)
 
 func IsScoreBetterThan(other : ScoreData) -> bool:
@@ -46,7 +55,8 @@ func IncLevel() -> void:
 	Level += 1
 
 func DecLevel() -> void:
-	Level -= 1
+	if Level > 0:
+		Level -= 1
 
 func CheckProgress() -> void:
 	Progress = int(max(0, Progress))
