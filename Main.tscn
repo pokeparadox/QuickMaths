@@ -41,8 +41,12 @@ __meta__ = {
 margin_right = 470.0
 margin_bottom = 214.0
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+[node name="TitleBar" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_right = 470.0
+margin_bottom = 34.0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/VBoxContainer/TitleBar"]
+margin_right = 408.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
@@ -50,6 +54,13 @@ text = "Quick Maths!"
 __meta__ = {
 "_editor_description_": "Quick MAths!"
 }
+
+[node name="ButtonReset" type="Button" parent="VBoxContainer/VBoxContainer/TitleBar"]
+margin_left = 412.0
+margin_right = 470.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 5 )
+text = "Reset"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
 margin_top = 38.0
@@ -126,13 +137,6 @@ margin_bottom = 34.0
 custom_fonts/font = ExtResource( 5 )
 text = "Check"
 
-[node name="ButtonReset" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 386.0
-margin_right = 444.0
-margin_bottom = 34.0
-custom_fonts/font = ExtResource( 5 )
-text = "Reset"
-
 [node name="ButtonShow" type="Button" parent="VBoxContainer/VBoxContainer"]
 margin_top = 138.0
 margin_right = 470.0
@@ -170,9 +174,10 @@ stream = ExtResource( 3 )
 [node name="WrongSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/TitleBar/ButtonReset" to="." method="_on_ButtonReset_pressed"]
 [connection signal="newBestScore" from="VBoxContainer/VBoxContainer/BestStatus" to="." method="_on_BestStatus_newBestScore"]
+[connection signal="focus_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/Response" to="." method="_on_Response_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/ButtonCheck" to="." method="_on_ButtonCheck_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/ButtonReset" to="." method="_on_ButtonReset_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonShow" to="." method="_on_ButtonShow_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/ButtonNext" to="." method="_on_ButtonNext_pressed"]
 [connection signal="ButtonPressed" from="VBoxContainer/ButtonGrid" to="." method="_on_ButtonGrid_ButtonPressed"]

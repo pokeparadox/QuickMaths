@@ -22,6 +22,11 @@ func _ready() -> void:
 	defaultFontColour = $VBoxContainer/VBoxContainer/HBoxContainer/Response.get_color("font_color")
 	Load()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if event.scancode == KEY_ENTER:
+			_on_ButtonCheck_pressed()
+
 func Right() -> void:
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.add_color_override("font_color", Color(0,1,0,1))
 	$VBoxContainer/VBoxContainer/HBoxContainer/Response.text = "Correct! ^_~"
@@ -121,3 +126,7 @@ func _on_ButtonReset_pressed() -> void:
 func _on_BestStatus_newBestScore(data) -> void:
 	bestScoreData = data
 	Save()
+
+
+func _on_Response_focus_entered() -> void:
+	$VBoxContainer/VBoxContainer/HBoxContainer/Response.release_focus()

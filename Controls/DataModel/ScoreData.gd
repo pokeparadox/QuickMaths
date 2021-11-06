@@ -3,7 +3,7 @@ extends Node
 class_name ScoreData
 
 const LEVEL_MULT : int = 10
-const SaveFile := "res://save.sav"
+const SaveFile := "user://save.sav"
 
 var Level : int = 0
 var Progress: int = 0
